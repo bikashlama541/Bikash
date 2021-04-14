@@ -1,0 +1,26 @@
+[anchore@2330fd64fb80 anchore-engine]$ anchore-cli --u admin --p ***** registry add myregistry.com:5000 anchore anchore --insecure
+Error: cannot ping supplied registry with supplied credentials - exception: failed check to access registry (https://myregistry.com:5000,anchore) - exception: cannot access registry using registry version 2 https://myregistry.com:5000:5000/v2/
+HTTP Code: 406
+Detail: {'error_codes': []}
+
+[anchore@2330fd64fb80 anchore-engine]$ anchore-cli --u admin --p ***** registry add myregistry.com:5000 anchore anchore --insecure
+Error: cannot ping supplied registry with supplied credentials - exception: failed check to access registry (https://myregistry.com:5000,anchore) - exception: cannot access registry using registry version 2 https://myregistry.com:5000/v2/
+HTTP Code: 406
+Detail: {'error_codes': []}
+
+[anchore@2330fd64fb80 anchore-engine]$ anchore-cli --u admin --p ***** registry add myregistry.com:5000 anchore anchore --insecure --skip-validate
+Registry: myregistry.com:5000
+Name: myregistry.com:5000
+User: anchore
+Type: docker_v2
+Verify TLS: False
+Created: 2021-04-14T16:09:57Z
+Updated: 2021-04-14T16:09:57Z
+
+Error: No such command "image".
+[anchore@2330fd64fb80 anchore-engine]$ anchore-cli --u admin --p ***** image add nmyregistry.com:5000/ubuntu:18.04
+Error: cannot fetch image digest/manifest from registry
+HTTP Code: 400
+Detail: {'error_codes': ['SKOPEO_UNKNOWN_ERROR'], 'raw_exception_message': 'Error encountered in skopeo operation. cmd=/bin/sh -c skopeo   inspect --raw --tls-verify=false --creds "${SKOPUSER}":"${SKOPPASS}" docker://nexus3.mmi.mig.corp:5000/migubuntu:18.04, rc=1, stdout=None, stderr=b\'time="2021-04-14T16:11:10Z" level=fatal msg="Error parsing image name \\\\"docker://myregistry.com:5000/ubuntu:18.04\\\\": error pinging docker registry myregistry.com:5000:5000: Get \\\\"http://myregistry.com:5000:5000/v2/\\\\": EOF"\\n\', error_code=SKOPEO_UNKNOWN_ERROR'}
+
+[anchore@2330fd64fb80 anchore-engine]$ 
